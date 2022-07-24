@@ -1,9 +1,6 @@
 package io.jomatt.multitenant.sample;
 
 import io.quantics.multitenant.TenantContext;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,22 +11,10 @@ public class HomeController {
 
     @GetMapping
     public String get() {
-        StringBuilder result = new StringBuilder();
-        if (TenantContext.getTenantId() == null) {
-            result.append("Hello World!");
-        } else {
-            result.append("Hello World from ")
-                    .append(TenantContext.getTenantId())
-                    .append("!");
-        }
+        StringBuilder result = new StringBuilder("Hello World");
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getAuthorities().size() > 0) {
-            result.append("\n\n")
-                    .append("Granted authorities:").append("\n");
-            authentication.getAuthorities().stream()
-                    .map(GrantedAuthority::getAuthority)
-                    .forEach(a -> result.append("- ").append(a).append("\n"));
+        if (TenantContext.getTenantId() != null) {
+            result.append(" from ").append(TenantContext.getTenantId());
         }
 
         return result.toString();

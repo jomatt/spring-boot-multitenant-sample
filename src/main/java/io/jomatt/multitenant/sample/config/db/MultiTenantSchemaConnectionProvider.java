@@ -10,23 +10,24 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Provider that provides tenant-specific connection handling in a multi-tenant application. The tenant distinction is
- * realized by using separate schemas, i.e. each tenant uses its own schema in a shared (common) database.
+ * Provider that provides tenant-specific connection handling in a multi-tenant application. The tenant
+ * distinction is realized by using separate schemas, i.e. each tenant uses its own schema in a shared
+ * (common) database.
  */
 @Component
 @Slf4j
 public class MultiTenantSchemaConnectionProvider implements MultiTenantConnectionProvider {
 
-    private final DataSource datasource;
+    private final DataSource dataSource;
 
     @Autowired
     public MultiTenantSchemaConnectionProvider(DataSource dataSource) {
-        this.datasource = dataSource;
+        this.dataSource = dataSource;
     }
 
     @Override
     public Connection getAnyConnection() throws SQLException {
-        return datasource.getConnection();
+        return dataSource.getConnection();
     }
 
     @Override

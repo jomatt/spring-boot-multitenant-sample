@@ -4,6 +4,7 @@ import io.jomatt.multitenant.sample.util.UrlUtils;
 import io.jomatt.multitenant.sample.config.db.CurrentTenantResolver;
 import io.quantics.multitenant.tenantdetails.TenantDetails;
 import lombok.*;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Data
-@Builder
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 @Entity
 @Table(name = "tenant", schema = CurrentTenantResolver.DEFAULT_SCHEMA)
 public class Tenant implements TenantDetails {
@@ -34,7 +34,6 @@ public class Tenant implements TenantDetails {
     @NotNull
     @Column(name = "issuer", nullable = false)
     private String issuer;
-
 
     @Override
     public String getJwkSetUrl() {
