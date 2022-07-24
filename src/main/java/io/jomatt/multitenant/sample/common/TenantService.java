@@ -20,6 +20,10 @@ public class TenantService implements TenantDetailsService {
         return repository.findAll();
     }
 
+    public Optional<Tenant> getById(String id) {
+        return repository.findById(id);
+    }
+
     @Override
     public Optional<Tenant> getByIssuer(String issuer) {
         return repository.findByIssuer(issuer);

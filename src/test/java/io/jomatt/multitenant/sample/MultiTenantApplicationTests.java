@@ -51,6 +51,19 @@ public class MultiTenantApplicationTests {
     }
 
     @Test
+    void unknownTenant() {
+        String url = "http://localhost:" + port + "/";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-TENANT-ID", "unknown-tenant");
+        var result = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), String.class);
+
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+        assertTrue(result.hasBody());
+        assertNotNull(result.getBody());
+        assertTrue(result.getBody().contains("Hello World from unknown tenant"));
+    }
+
+    @Test
     void noTenant() {
         String url = "http://localhost:" + port + "/";
         var result = restTemplate.getForObject(url, String.class);
