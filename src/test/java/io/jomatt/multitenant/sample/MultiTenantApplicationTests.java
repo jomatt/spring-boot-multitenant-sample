@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,26 +20,26 @@ public class MultiTenantApplicationTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Test
-    void tenant1() {
+    private ResponseEntity<String> sendRequest(String tenantId) {
         String url = "http://localhost:" + port + "/";
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-TENANT-ID", "tenant1");
-        var result = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), String.class);
+        headers.add("X-TENANT-ID", tenantId);
+        return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), String.class);
+    }
+
+    @Test
+    void tenant1() {
+        ResponseEntity<String> result = sendRequest("tenant1");
 
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertTrue(result.hasBody());
         assertNotNull(result.getBody());
-        System.out.println(result.getBody());
         assertTrue(result.getBody().contains("Hello World from tenant1"));
     }
 
     @Test
     void tenant2() {
-        String url = "http://localhost:" + port + "/";
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("X-TENANT-ID", "tenant2");
-        var result = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), String.class);
+        ResponseEntity<String> result = sendRequest("tenant2");
 
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertTrue(result.hasBody());
@@ -52,10 +49,7 @@ public class MultiTenantApplicationTests {
 
     @Test
     void unknownTenant() {
-        String url = "http://localhost:" + port + "/";
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("X-TENANT-ID", "unknown-tenant");
-        var result = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), String.class);
+        ResponseEntity<String> result = sendRequest("unknown-tenant");
 
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertTrue(result.hasBody());
@@ -66,7 +60,7 @@ public class MultiTenantApplicationTests {
     @Test
     void noTenant() {
         String url = "http://localhost:" + port + "/";
-        var result = restTemplate.getForObject(url, String.class);
+        String result = restTemplate.getForObject(url, String.class);
 
         assertEquals("Hello World", result);
     }
