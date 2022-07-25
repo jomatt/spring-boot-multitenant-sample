@@ -34,7 +34,7 @@ public class HomeController {
             return "Hello World from unknown tenant";
         }
 
-        return "Hello World from " + tenant.get().getId() + "(" + tenant.get().getName() + ")";
+        return "Hello World from " + tenant.get().getId() + " (" + tenant.get().getName() + ")";
     }
 
 }

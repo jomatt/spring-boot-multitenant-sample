@@ -34,7 +34,7 @@ public class MultiTenantApplicationTests {
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertTrue(result.hasBody());
         assertNotNull(result.getBody());
-        assertTrue(result.getBody().contains("Hello World from tenant1"));
+        assertTrue(result.getBody().startsWith("Hello World from tenant1"));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class MultiTenantApplicationTests {
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertTrue(result.hasBody());
         assertNotNull(result.getBody());
-        assertTrue(result.getBody().contains("Hello World from tenant2"));
+        assertTrue(result.getBody().startsWith("Hello World from tenant2"));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class MultiTenantApplicationTests {
         assertEquals(HttpStatus.OK, result.getStatusCode());
         assertTrue(result.hasBody());
         assertNotNull(result.getBody());
-        assertTrue(result.getBody().contains("Hello World from unknown tenant"));
+        assertEquals("Hello World from unknown tenant", result.getBody());
     }
 
     @Test

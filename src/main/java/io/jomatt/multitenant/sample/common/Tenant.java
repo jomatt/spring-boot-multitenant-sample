@@ -20,24 +20,24 @@ import javax.validation.constraints.NotNull;
 public class Tenant implements TenantDetails {
 
     @Id
-    @Column(name = "id", updatable = false)
+    @Column(name = "id", updatable = false, nullable = false, unique = true)
     private String id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @NotNull
-    @Column(name = "schema", nullable = false)
+    @Column(name = "schema", nullable = false, unique = true)
     private String schema;
 
     @NotNull
-    @Column(name = "issuer", nullable = false)
+    @Column(name = "issuer", nullable = false, unique = true)
     private String issuer;
 
     @Override
     public String getJwkSetUrl() {
-        return UrlUtils.removeTrailingSlash(this.issuer) + "/protocol/openid-connect/certs";
+        return this.issuer + "/protocol/openid-connect/certs";
     }
 
 }
