@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS public.tenant (
 );
 
 INSERT INTO public.tenant
-VALUES ('tenant1', 'Tenant 1', 'tenant1', 'https://idp.example.org/tenant1'),
-       ('tenant2', 'Tenant 2', 'tenant2', 'https://idp.example.org/tenant2');
+VALUES ('tenant1', 'Tenant 1', 'tenant1', 'https://idp.example.org/tenant-1'),
+       ('tenant2', 'Tenant 2', 'tenant2', 'https://idp.example.org/tenant-2');
 
 CREATE SCHEMA IF NOT EXISTS "tenant1";
 CREATE SCHEMA IF NOT EXISTS "tenant2";
