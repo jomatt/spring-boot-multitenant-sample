@@ -5,10 +5,39 @@ services:
     container_name: "multitenant-db"
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${MULTITENANT_DB_USER}
+      POSTGRES_PASSWORD: ${MULTITENANT_DB_PASSWORD}
+      POSTGRES_DB: ${MULTITENANT_DB}
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./multitenant-db-data:/var/lib/postgresql/data
+  keycloak-db:
+    image: "postgres:latest"
+    container_name: "keycloak-db"
+    restart: always
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_DB}
+      POSTGRES_USER: ${KEYCLOAK_DB_USER}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+    ports:
+      - "9432:5432"
+    volumes:
+      - ./keycloak-db-data:/var/lib/postgresql/data
+  keycloak:
+    image: "quay.io/keycloak/keycloak:latest"
+    container_name: "keycloak"
+    restart: unless-stopped
+    depends_on:
+      - keycloak-db
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak-db/${KEYCLOAK_DB}
+      KC_DB_USERNAME: ${KEYCLOAK_DB_USER}
+      KC_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN_USER}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    command:
+      - start-dev
+    ports:
+      - "9090:8080"
