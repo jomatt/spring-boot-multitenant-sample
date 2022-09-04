@@ -2,7 +2,7 @@
 # Spring Boot multi-tenant sample app
 
 This sample app uses the [Spring Boot starter library from Quantics](https://github.com/quantics-io/multitenant-oauth2-spring-boot-starter) 
-which contains all the configuration that is needed to build a multi-tenant Spring Boot application.
+which contains all the configuration options that are required to build a multi-tenant Spring Boot application.
 
 In addition to the final sample, there are two minimal working examples in this repo:
 
