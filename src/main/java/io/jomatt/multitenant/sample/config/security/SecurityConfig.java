@@ -1,26 +1,25 @@
 package io.jomatt.multitenant.sample.config.security;
 
 import io.quantics.multitenant.oauth2.config.MultiTenantAuthenticationManagerResolver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManagerResolver;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import javax.servlet.http.HttpServletRequest;
-
+@Configuration
 public class SecurityConfig {
 
-    private final AuthenticationManagerResolver<HttpServletRequest> tenantResolver;
+    private final MultiTenantAuthenticationManagerResolver authenticationManagerResolver;
 
-    public SecurityConfig(MultiTenantAuthenticationManagerResolver tenantResolver) {
-        this.tenantResolver = tenantResolver;
+    @Autowired
+    public SecurityConfig(MultiTenantAuthenticationManagerResolver authenticationManagerResolver) {
+        this.authenticationManagerResolver = authenticationManagerResolver;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().and()
-                .cors().and()
                 .authorizeRequests(a -> a
                         // error endpoints
                         .antMatchers("/error").permitAll()
@@ -31,13 +30,14 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
-                                "/webjars/**").permitAll()
+                                "/webjars/**"
+                        ).permitAll()
 
                         // authenticate every request
                         .anyRequest().authenticated())
 
                 .oauth2ResourceServer(o -> o
-                        .authenticationManagerResolver(this.tenantResolver));
+                        .authenticationManagerResolver(this.authenticationManagerResolver));
 
         return http.build();
     }
