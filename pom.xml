@@ -21,7 +21,7 @@
         <dependency>
             <groupId>io.quantics</groupId>
             <artifactId>multitenant-oauth2-spring-boot-starter</artifactId>
-            <version>0.3.0</version>
+            <version>0.3.1</version>
         </dependency>
 
         <!-- Database -->
@@ -33,6 +33,10 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
         </dependency>
 
         <!-- API docs -->

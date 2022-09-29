@@ -1,19 +1,21 @@
 package io.jomatt.multitenant.sample.config.security;
 
-import io.quantics.multitenant.oauth2.config.MultiTenantAuthenticationManagerResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManagerResolver;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 public class SecurityConfig {
 
-    private final MultiTenantAuthenticationManagerResolver authenticationManagerResolver;
+    private final AuthenticationManagerResolver<HttpServletRequest> authenticationManagerResolver;
 
     @Autowired
-    public SecurityConfig(MultiTenantAuthenticationManagerResolver authenticationManagerResolver) {
+    public SecurityConfig(AuthenticationManagerResolver<HttpServletRequest> authenticationManagerResolver) {
         this.authenticationManagerResolver = authenticationManagerResolver;
     }
 
