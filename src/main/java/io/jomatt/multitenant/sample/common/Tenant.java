@@ -1,7 +1,7 @@
 package io.jomatt.multitenant.sample.common;
 
 import io.jomatt.multitenant.sample.config.db.CurrentTenantResolver;
-import io.quantics.multitenant.tenantdetails.SchemaTenantDetails;
+import io.quantics.multitenant.tenantdetails.TenantSchemaDetails;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @Entity
 @Table(name = "tenant", schema = CurrentTenantResolver.DEFAULT_SCHEMA)
-public class Tenant implements SchemaTenantDetails {
+public class Tenant implements TenantSchemaDetails {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false, unique = true)

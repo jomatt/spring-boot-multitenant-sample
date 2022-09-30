@@ -1,6 +1,6 @@
 package io.jomatt.multitenant.sample.config.db;
 
-import io.quantics.multitenant.tenantdetails.SchemaTenantDetailsService;
+import io.quantics.multitenant.tenantdetails.TenantSchemaDetailsService;
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -38,7 +38,7 @@ public class FlywayConfig {
     @Bean
     @ConditionalOnProperty(prefix = "spring", name = "flyway.repair-on-migrate", havingValue = "false",
             matchIfMissing = true)
-    public Boolean tenantsFlyway(SchemaTenantDetailsService tenantService, DataSource dataSource) {
+    public Boolean tenantsFlyway(TenantSchemaDetailsService tenantService, DataSource dataSource) {
         tenantService.getAll().forEach(tenant -> {
             Flyway flyway = Flyway.configure()
                     .outOfOrder(outOfOrder)

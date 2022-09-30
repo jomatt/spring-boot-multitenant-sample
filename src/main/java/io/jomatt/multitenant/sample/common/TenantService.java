@@ -1,13 +1,13 @@
 package io.jomatt.multitenant.sample.common;
 
-import io.quantics.multitenant.tenantdetails.SchemaTenantDetailsService;
+import io.quantics.multitenant.tenantdetails.TenantSchemaDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class TenantService implements SchemaTenantDetailsService {
+public class TenantService implements TenantSchemaDetailsService {
 
     private final TenantRepository repository;
 
