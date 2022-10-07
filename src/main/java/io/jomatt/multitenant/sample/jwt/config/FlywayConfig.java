@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @ConditionalOnProperty(prefix = "spring", name = "flyway.enabled", matchIfMissing = true)
-@Profile("production")
+@Profile("prod")
 public class FlywayConfig {
 
     private final boolean outOfOrder;

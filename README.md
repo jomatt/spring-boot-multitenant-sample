@@ -8,8 +8,8 @@ In addition to the final sample, there are two minimal working examples in this 
 
 | Spring Profile                                                     | Tenant resolution mode            |
 |--------------------------------------------------------------------|-----------------------------------|
-| [testing](src/main/resources/application-testing.properties)       | Header (using custom HTTP header) |
-| [production](src/main/resources/application-production.properties) | JWT (using OAuth2 issuer claim)   |
+| [default](src/main/resources/application.properties)               | Header (using custom HTTP header) |
+| [production](src/main/resources/application-prod.properties) | JWT (using OAuth2 issuer claim)   |
 
 
 The code in this repository accompanies the following blog posts:

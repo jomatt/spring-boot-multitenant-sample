@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.servlet.http.HttpServletRequest;
 
 @Configuration
-@Profile("production")
+@Profile("prod")
 public class SecurityConfig {
 
     private final AuthenticationManagerResolver<HttpServletRequest> authenticationManagerResolver;
