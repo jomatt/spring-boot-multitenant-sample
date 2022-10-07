@@ -1,4 +1,4 @@
-package io.jomatt.multitenant.sample.common;
+package io.jomatt.multitenant.sample.common.tenant;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

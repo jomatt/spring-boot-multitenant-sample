@@ -1,4 +1,4 @@
-package io.jomatt.multitenant.sample.config.db;
+package io.jomatt.multitenant.sample.common.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;

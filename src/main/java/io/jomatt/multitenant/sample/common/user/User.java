@@ -1,6 +1,5 @@
-package io.jomatt.multitenant.sample.user;
+package io.jomatt.multitenant.sample.common.user;
 
-import io.jomatt.multitenant.sample.config.db.CurrentTenantResolver;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package io.jomatt.multitenant.sample.common;
+package io.jomatt.multitenant.sample.common.tenant;
 
 import io.quantics.multitenant.tenantdetails.TenantSchemaDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

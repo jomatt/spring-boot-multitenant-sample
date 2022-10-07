@@ -1,4 +1,4 @@
-package io.jomatt.multitenant.sample.util;
+package io.jomatt.multitenant.sample.common.util;
 
 /**
  * Utility class for various url-related operations.

@@ -1,4 +1,4 @@
-package io.jomatt.multitenant.sample.config.db;
+package io.jomatt.multitenant.sample.common.config;
 
 import io.quantics.multitenant.TenantContext;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;

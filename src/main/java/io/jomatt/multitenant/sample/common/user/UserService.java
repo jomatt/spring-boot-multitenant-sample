@@ -1,9 +1,8 @@
-package io.jomatt.multitenant.sample.user;
+package io.jomatt.multitenant.sample.common.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

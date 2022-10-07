@@ -1,8 +1,9 @@
-package io.jomatt.multitenant.sample.config.security;
+package io.jomatt.multitenant.sample.jwt.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManagerResolver;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -10,6 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.servlet.http.HttpServletRequest;
 
 @Configuration
+@Profile("production")
 public class SecurityConfig {
 
     private final AuthenticationManagerResolver<HttpServletRequest> authenticationManagerResolver;

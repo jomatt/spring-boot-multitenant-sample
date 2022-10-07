@@ -1,16 +1,19 @@
-package io.jomatt.multitenant.sample.config.db;
+package io.jomatt.multitenant.sample.jwt.config;
 
+import io.jomatt.multitenant.sample.common.config.CurrentTenantResolver;
 import io.quantics.multitenant.tenantdetails.TenantSchemaDetailsService;
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import javax.sql.DataSource;
 
 @Configuration
 @ConditionalOnProperty(prefix = "spring", name = "flyway.enabled", matchIfMissing = true)
+@Profile("production")
 public class FlywayConfig {
 
     private final boolean outOfOrder;

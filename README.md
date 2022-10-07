@@ -6,10 +6,10 @@ which contains all the configuration options that are required to build a multi-
 
 In addition to the final sample, there are two minimal working examples in this repo:
 
-| Tenant resolution mode            | Git Tag                                                 |
-|-----------------------------------|---------------------------------------------------------|
-| Header (using custom HTTP header) | [resolve-mode-header](releases/tag/resolve-mode-header) |
-| JWT (using OAuth2 issuer claim)   | [resolve-mode-jwt](releases/tag/resolve-mode-jwt)       |
+| Spring Profile                             | Tenant resolution mode            |
+|--------------------------------------------|-----------------------------------|
+| testing                                    | Header (using custom HTTP header) |
+| production (releases/tag/resolve-mode-jwt) | JWT (using OAuth2 issuer claim)   |
 
 
 The code in this repository accompanies the following blog posts:

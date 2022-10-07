@@ -1,4 +1,4 @@
-package io.jomatt.multitenant.sample;
+package io.jomatt.multitenant.sample.jwt;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +27,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@ActiveProfiles({ "test", "production" })
 @AutoConfigureMockMvc
 @Sql(scripts = { "/create-tenants.sql", "/insert-data.sql" }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = { "/delete-data.sql" }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class MultiTenantApplicationTests {
+public class MultiTenantJwtApplicationTests {
 
     private static final String JWT_TENANT_1 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2lkcC5leGFtcGxlLm9yZy90ZW5hbnQtMSIsImlhdCI6MTY2NDU4MjQwMCwiZXhwIjoyNTI0NjA4MDAwLCJzdWIiOiJlNDg5ZmZlNy0yMmQyLTQwZWYtYmRlMS1mZDA2OWFjOGFmMGIiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsidXNlciJdfSwibmFtZSI6ImFsaWNlIn0.byGgJ1neIoYYE0gID2gWOo-PQDfHy3wasJ3NoD7iyz4";
     private static final String JWT_TENANT_2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2lkcC5leGFtcGxlLm9yZy90ZW5hbnQtMiIsImlhdCI6MTY2NDU4MjQwMCwiZXhwIjoyNTI0NjA4MDAwLCJzdWIiOiI0YWViYzRkMS0yNDFjLTQ5MzQtYjBiNi1lNjFmMGI1NmRjNzciLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsidXNlciJdfSwibmFtZSI6ImJvYiJ9.wHknw6r-vFO6pzz8DrHhLnxc0X428qGXpq3vxl1ygus";
