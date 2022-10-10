@@ -1,0 +1,14 @@
+version: "3"
+services:
+  multitenant-db:
+    image: "postgres:latest"
+    container_name: "multitenant-db"
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${MULTITENANT_DB_USER}
+      POSTGRES_PASSWORD: ${MULTITENANT_DB_PASSWORD}
+      POSTGRES_DB: ${MULTITENANT_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./multitenant-db-data:/var/lib/postgresql/data
