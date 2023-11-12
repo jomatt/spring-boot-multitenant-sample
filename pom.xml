@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.2</version>
+        <version>3.1.5</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.jomatt</groupId>
@@ -14,14 +14,14 @@
     <name>Spring Boot multi-tenant sample app using the starter library from Quantics</name>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.quantics</groupId>
             <artifactId>multitenant-oauth2-spring-boot-starter</artifactId>
-            <version>0.3.1</version>
+            <version>0.4.0</version>
         </dependency>
 
         <!-- Database -->
@@ -42,13 +42,13 @@
         <!-- API docs -->
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.11</version>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-security</artifactId>
-            <version>1.6.11</version>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.2.0</version>
         </dependency>
 
         <!-- Utilities -->
@@ -58,8 +58,8 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
         </dependency>
 
         <!-- Testing -->

@@ -1,7 +1,6 @@
 package io.jomatt.multitenant.sample.common.config;
 
 import io.jomatt.multitenant.sample.MultiTenantApplication;
-import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.cfg.Environment;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
@@ -48,7 +47,6 @@ public class MultiTenantSchemaHibernateConfiguration {
         em.setJpaVendorAdapter(this.jpaVendorAdapter());
 
         Map<String, Object> jpaPropertiesMap = new HashMap<>(jpaProperties.getProperties());
-        jpaPropertiesMap.put(Environment.MULTI_TENANT, MultiTenancyStrategy.SCHEMA);
         jpaPropertiesMap.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
         jpaPropertiesMap.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantIdentifierResolver);
         em.setJpaPropertyMap(jpaPropertiesMap);

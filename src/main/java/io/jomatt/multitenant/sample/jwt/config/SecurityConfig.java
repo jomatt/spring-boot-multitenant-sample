@@ -1,5 +1,6 @@
 package io.jomatt.multitenant.sample.jwt.config;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,8 +8,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManagerResolver;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @Profile("prod")
@@ -24,12 +23,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(a -> a
+                .authorizeHttpRequests(requests -> requests
                         // error endpoints
-                        .antMatchers("/error").permitAll()
+                        .requestMatchers("/error").permitAll()
 
                         // swagger resources
-                        .antMatchers(
+                        .requestMatchers(
                                 "/swagger-resources/**",
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
@@ -40,7 +39,7 @@ public class SecurityConfig {
                         // authenticate every request
                         .anyRequest().authenticated())
 
-                .oauth2ResourceServer(o -> o
+                .oauth2ResourceServer(oauth2 -> oauth2
                         .authenticationManagerResolver(this.authenticationManagerResolver));
 
         return http.build();
