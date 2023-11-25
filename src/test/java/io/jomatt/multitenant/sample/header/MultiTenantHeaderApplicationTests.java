@@ -65,8 +65,8 @@ public class MultiTenantHeaderApplicationTests {
         return mvc.perform(get("/users").with(tenantHeader(tenantId)));
     }
 
-    private static TenantHeaderRequestPostProcessor tenantHeader(String token) {
-        return new TenantHeaderRequestPostProcessor(token);
+    private static TenantHeaderRequestPostProcessor tenantHeader(String tenantId) {
+        return new TenantHeaderRequestPostProcessor(tenantId);
     }
 
     private static class TenantHeaderRequestPostProcessor implements RequestPostProcessor {
