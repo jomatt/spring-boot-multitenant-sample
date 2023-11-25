@@ -55,6 +55,12 @@ public class MultiTenantHeaderApplicationTests {
                 .andExpect(status().isUnauthorized());
     }
 
+    @Test
+    void ignoredPath() throws Exception {
+        mvc.perform(get("/swagger-ui/index.html"))
+                .andExpect(status().isOk());
+    }
+
     private ResultActions sendRequest(String tenantId) throws Exception {
         return mvc.perform(get("/users").with(tenantHeader(tenantId)));
     }
